@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
     'S3kr12'
   end
 
-  def encode_token(paylod)
+  def encode_token(payload)
     JWT.encode(payload, secret_key)
   end
 
