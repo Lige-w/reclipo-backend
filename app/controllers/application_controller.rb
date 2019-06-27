@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
   end
 
   def auth_header
-    request.headers['Autrhorization']
+    request.headers['Authentication']
   end
 
   def decoded_token
@@ -32,7 +32,11 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def logged_in
+  def logged_in?
     !!current_user
+  end
+
+  def authorized
+    render json: {message: 'Please log in'}, status: :unauthorized unless logged_in?
   end
 end
