@@ -7,6 +7,10 @@ class Api::V1::ProjectsController < ApplicationController
     end
   end
 
+  def index
+    render json: current_user.projects
+  end
+
   private
 
   def project_params
