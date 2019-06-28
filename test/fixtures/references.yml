@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  publish_date: MyString
+  title: MyString
+  publisher_location: MyString
+  publisher: MyString
+  project: one
+  url: MyString
+  type: 
+  page_numbers: MyString
+  volume_number: MyString
+  issue_number: MyString
+  format: MyString
+
+two:
+  publish_date: MyString
+  title: MyString
+  publisher_location: MyString
+  publisher: MyString
+  project: two
+  url: MyString
+  type: 
+  page_numbers: MyString
+  volume_number: MyString
+  issue_number: MyString
+  format: MyString
