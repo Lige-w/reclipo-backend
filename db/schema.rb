@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_30_164250) do
+ActiveRecord::Schema.define(version: 2019_07_01_162618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2019_06_30_164250) do
     t.index ["reference_id"], name: "index_reference_authors_on_reference_id"
   end
 
+  create_table "reference_tags", force: :cascade do |t|
+    t.bigint "reference_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reference_id"], name: "index_reference_tags_on_reference_id"
+    t.index ["tag_id"], name: "index_reference_tags_on_tag_id"
+  end
+
   create_table "references", force: :cascade do |t|
     t.string "publish_date"
     t.string "title"
@@ -48,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_06_30_164250) do
     t.string "publisher"
     t.bigint "project_id"
     t.string "url"
-    t.string "type"
+    t.string "reference_type"
     t.string "page_numbers"
     t.string "volume_number"
     t.string "issue_number"
@@ -56,6 +65,12 @@ ActiveRecord::Schema.define(version: 2019_06_30_164250) do
     t.datetime "updated_at", null: false
     t.string "medium"
     t.index ["project_id"], name: "index_references_on_project_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,5 +84,7 @@ ActiveRecord::Schema.define(version: 2019_06_30_164250) do
   add_foreign_key "projects", "users"
   add_foreign_key "reference_authors", "\"references\"", column: "reference_id"
   add_foreign_key "reference_authors", "authors"
+  add_foreign_key "reference_tags", "\"references\"", column: "reference_id"
+  add_foreign_key "reference_tags", "tags"
   add_foreign_key "references", "projects"
 end

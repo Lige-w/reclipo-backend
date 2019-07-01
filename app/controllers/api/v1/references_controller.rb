@@ -1,6 +1,10 @@
 class Api::V1::ReferencesController < ApplicationController
   def create
+    @project = Project.find(reference_params[:project_id])
+    @reference = @project.references.build(reference_params)
+    @project.save!
 
+    render json: @project
   end
 
   private
@@ -12,12 +16,14 @@ class Api::V1::ReferencesController < ApplicationController
         :publisher_location,
         :publisher,
         :url,
-        :type,
+        :reference_type,
+        :medium,
         :page_numbers,
         :volume_number,
         :issue_number,
-        :format,
-        authors_attributes: [:first_name, :last_name, :middle_initial]
+        :project_id,
+        authors_attributes: [:first_name, :last_name, :middle_initial],
+        tags_attributes: [:name]
     )
   end
 end
