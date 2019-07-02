@@ -12,5 +12,6 @@ class ReferenceSerializer < ActiveModel::Serializer
              :issue_number,
              :medium,
              :authors,
-             :tags
+             :tags,
+             :notes
 end
