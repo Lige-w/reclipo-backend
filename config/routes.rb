@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
       resources :projects, only: [:create, :index, :show]
       resources :references, only: [:create]
-      resources :notes, only: [:create]
+      resources :notes, only: [:create, :update]
     end
   end
 end
