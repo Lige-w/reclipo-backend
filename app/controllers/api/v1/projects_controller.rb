@@ -1,6 +1,6 @@
 class Api::V1::ProjectsController < ApplicationController
 
-  before_action :find_project, only: [:show]
+  before_action :find_project, only: [:show, :destroy]
 
   def create
     @project = current_user.projects.build(project_params)
@@ -16,6 +16,11 @@ class Api::V1::ProjectsController < ApplicationController
 
   def show
     render json: @project
+  end
+
+  def destroy
+    @project.destroy
+    render json: {message: 'Deleted'}
   end
 
   private
