@@ -4,7 +4,7 @@ class Reference < ApplicationRecord
   has_many :authors, through: :reference_authors
   has_many :reference_tags
   has_many :tags, through: :reference_tags
-  has_many :notes
+  has_many :notes, dependent: :destroy
   accepts_nested_attributes_for :authors
   accepts_nested_attributes_for :tags
 
