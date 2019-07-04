@@ -1,10 +1,11 @@
 class Reference < ApplicationRecord
-  belongs_to :project
-  has_many :reference_authors
+  has_many :reference_authors, dependent: :destroy
   has_many :authors, through: :reference_authors
   has_many :reference_tags
   has_many :tags, through: :reference_tags
   has_many :notes, dependent: :destroy
+  has_many :project_references, dependent: :destroy
+  has_many :projects, through: :project_references
   accepts_nested_attributes_for :authors
   accepts_nested_attributes_for :tags
 

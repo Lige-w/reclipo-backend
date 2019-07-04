@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_03_130044) do
+ActiveRecord::Schema.define(version: 2019_07_03_205548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2019_07_03_130044) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reference_id"], name: "index_notes_on_reference_id"
+  end
+
+  create_table "project_references", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "reference_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_references_on_project_id"
+    t.index ["reference_id"], name: "index_project_references_on_reference_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -64,7 +73,6 @@ ActiveRecord::Schema.define(version: 2019_07_03_130044) do
     t.string "title"
     t.string "publisher_location"
     t.string "publisher"
-    t.bigint "project_id"
     t.string "url"
     t.string "reference_type"
     t.string "page_numbers"
@@ -73,7 +81,6 @@ ActiveRecord::Schema.define(version: 2019_07_03_130044) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "medium"
-    t.index ["project_id"], name: "index_references_on_project_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -91,10 +98,11 @@ ActiveRecord::Schema.define(version: 2019_07_03_130044) do
   end
 
   add_foreign_key "notes", "\"references\"", column: "reference_id"
+  add_foreign_key "project_references", "\"references\"", column: "reference_id"
+  add_foreign_key "project_references", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "reference_authors", "\"references\"", column: "reference_id"
   add_foreign_key "reference_authors", "authors"
   add_foreign_key "reference_tags", "\"references\"", column: "reference_id"
   add_foreign_key "reference_tags", "tags"
-  add_foreign_key "references", "projects"
 end

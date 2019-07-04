@@ -1,9 +1,7 @@
 class Api::V1::ReferencesController < ApplicationController
   def create
-    @project = Project.find(reference_params[:project_id])
-    @reference = @project.references.build(reference_params)
-    @project.save!
-
+    @reference = Reference.create!(reference_params)
+    @project = Project.find(reference_params[:project_ids][0])
     render json: @project
   end
 
@@ -21,7 +19,7 @@ class Api::V1::ReferencesController < ApplicationController
         :page_numbers,
         :volume_number,
         :issue_number,
-        :project_id,
+        project_ids: [],
         authors_attributes: [:first_name, :last_name, :middle_initial],
         tags_attributes: [:name]
     )
