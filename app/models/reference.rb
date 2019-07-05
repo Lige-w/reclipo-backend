@@ -1,7 +1,7 @@
 class Reference < ApplicationRecord
   has_many :reference_authors, dependent: :destroy
   has_many :authors, through: :reference_authors
-  has_many :reference_tags
+  has_many :reference_tags, dependent: :destroy
   has_many :tags, through: :reference_tags
   has_many :notes, dependent: :destroy
   has_many :project_references, dependent: :destroy

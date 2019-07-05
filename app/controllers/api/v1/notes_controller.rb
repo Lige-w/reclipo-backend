@@ -1,4 +1,6 @@
 class Api::V1::NotesController < ApplicationController
+  before_action :find_note, only: [:update, :destroy]
+
   def create
     @reference = Reference.find(params[:reference_id])
 
@@ -9,10 +11,19 @@ class Api::V1::NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find(params[:id])
     @note.update(note_params)
-
     render json: @note
+  end
+
+  def destroy
+    @note.destroy
+    render json: {message: 'Success!'}
+  end
+
+  private
+
+  def find_note
+    @note = Note.find(params[:id])
   end
 
   def note_params

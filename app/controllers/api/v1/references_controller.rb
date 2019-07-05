@@ -5,6 +5,11 @@ class Api::V1::ReferencesController < ApplicationController
     render json: @project
   end
 
+  def destroy
+    @reference = Reference.find(params[:id])
+    @reference.destroy!
+    render json: {message: 'success'}
+  end
   private
 
   def reference_params
