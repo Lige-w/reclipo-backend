@@ -12,16 +12,18 @@ class Reference < ApplicationRecord
   # validates :title, presence: true
 
   def authors_attributes=(author_attributes)
+    self.authors = []
     author_attributes.each do |author_attribute|
       author = Author.find_or_create_by(author_attribute)
-      self.authors << author
+      self.authors << author unless self.authors.include?(author)
     end
   end
 
   def tags_attributes=(tag_attributes)
+    self.tags = []
     tag_attributes.each do |tag_attribute|
       tag = Tag.find_or_create_by(tag_attribute)
-      self.tags << tag
+      self.tags << tag unless self.tags.include?(tag)
     end
   end
 end
