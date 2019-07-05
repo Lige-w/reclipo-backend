@@ -7,6 +7,10 @@ class Api::V1::ReferencesController < ApplicationController
     render json: @project
   end
 
+  def index
+    render json: current_user.references
+  end
+
   def update
     @reference.update(reference_params)
     render json: Project.find(params[:current_project])
