@@ -3,8 +3,7 @@ class Api::V1::ReferencesController < ApplicationController
 
   def create
     @reference = Reference.create!(reference_params)
-    @project = Project.find(reference_params[:project_ids][0])
-    render json: @project
+    render json: @reference
   end
 
   def index
@@ -13,7 +12,7 @@ class Api::V1::ReferencesController < ApplicationController
 
   def update
     @reference.update(reference_params)
-    render json: Project.find(params[:current_project])
+    render json: @reference
   end
 
   def destroy

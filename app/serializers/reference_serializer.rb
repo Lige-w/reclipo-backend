@@ -13,5 +13,6 @@ class ReferenceSerializer < ActiveModel::Serializer
              :medium,
              :authors,
              :tags,
-             :notes
+             :notes,
+             :projects
 end
