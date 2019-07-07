@@ -16,7 +16,7 @@ class Api::V1::ReferencesController < ApplicationController
   end
 
   def destroy
-    @reference.destroy!
+    @reference.destroy
     render json: {message: 'success'}
   end
   private
