@@ -5,7 +5,7 @@ Users can then store detailed notes on the cited sources, and share sources acro
 ###Backend
 
 This is the Ruby-on-Rails Backend API for RePrO: Research Project Organizer
-* Uses OAuth along with JWT to send and recieve encrypted information.
+* OAuth along with JWT and BCrypt to send and receive encrypted information.
 * Postgres Database
 * Ruby version: 2.6.1
 
