@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :projects, only: [:create, :index, :show, :destroy]
       resources :references, only: [:create, :index, :update, :destroy]
       resources :notes, only: [:create, :update, :destroy]
+      resources :tags, only: [:index]
     end
   end
 end
