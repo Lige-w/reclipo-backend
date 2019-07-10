@@ -7,7 +7,12 @@ class Api::V1::ReferencesController < ApplicationController
   end
 
   def index
-    render json: current_user.references
+    if !params[:tag_ids]
+      render json: current_user.references
+    else
+      @references = current_user.references.select{ |r| params[:tag_ids].all? { |t| r.tag_ids.include?(t.to_i) }}
+      render json: @references
+    end
   end
 
   def update
