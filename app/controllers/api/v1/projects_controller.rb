@@ -11,7 +11,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
 
   def index
-    render json: current_user.projects
+    render json: current_user.projects.uniq
   end
 
   def show
